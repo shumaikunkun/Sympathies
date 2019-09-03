@@ -9,15 +9,17 @@ import javax.persistence.Id;
 public class User {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
+    private String mail;
     private String name;
     private String passward;
     private Integer point;
 
     protected User() {}
 
-    public User(String id, String name, String passward, Integer point) {
-        this.id = id;
+    public User(String mail, String name, String passward, Integer point) {
+        this.mail = mail;
         this.name = name;
         this.passward = passward;
         this.point = point;
@@ -26,8 +28,8 @@ public class User {
     @Override
     public String toString() {
         return String.format(
-                "User[id='%s', name='%s', passward='%s', point='%d']",
-                id, name, passward, point);
+                "User[id=%d, mail='%s', name='%s', passward='%s', point='%d']",
+                id, mail, name, passward, point);
     }
 
 }
