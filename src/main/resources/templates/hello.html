@@ -6,6 +6,6 @@
 </head>
 <body>
 <p th:text="'Hello, ' + ${name} + '!!!!'" />
-<p>Get your greeting <a href="/greeting">here</a></p>
+<p>Get your greeting <a th:href="'greeting?name='+${name}" >here</a></p>
 </body>
 </html>
