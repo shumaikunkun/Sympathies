@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SymphoniesApplication {
+public class SympathiesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SymphoniesApplication.class, args);
+		SpringApplication.run(SympathiesApplication.class, args);
 	}
 
 }
