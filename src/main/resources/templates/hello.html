@@ -5,7 +5,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<p th:text="'Hello, ' + ${name} + '!!!!'" />
-<p>Get your greeting <a th:href="'greeting?name='+${name}" >here</a></p>
+
+<p th:text="'Hello, shuma!!!!'" />
+
+
+<form th:action="'greeting'" method="post" th:object="${inputUsr}">
+    <input type="text" th:field="*{usr}" />
+    <input type="text" th:field="*{pass}" />
+    <input type="submit" />
+</form>
+
+
 </body>
 </html>
