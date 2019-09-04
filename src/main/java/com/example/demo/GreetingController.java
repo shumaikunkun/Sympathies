@@ -56,10 +56,16 @@ public class GreetingController {
         return "setting";
     }
 
-    @GetMapping(path="/detail")
-    public String detail(@RequestParam("id") String id) {
+    @GetMapping("/detail")
+    public String detail(Model model, @RequestParam("id") String id) {
         for (Goods goods : goodsRepo.findAll()) {
             if (goods.getId() == Long.parseLong(id)) {
+                model.addAttribute("id", goods.getId());
+                model.addAttribute("name", goods.getName());
+                model.addAttribute("description", goods.getDescription());
+                model.addAttribute("point", goods.getPoint());
+                model.addAttribute("path", goods.getPath());
+                model.addAttribute("create_at", goods.getCreate_at());
                 return "detail";
             }
         }

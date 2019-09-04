@@ -31,6 +31,12 @@ public class Goods {
     }
 
     public Long getId() { return id; }
+    public Long getUser_id() { return user_id; }
+    public String getName() { return name; }
+    public String getDescription() { return description; }
+    public Integer getPoint() { return point; }
+    public String getPath() { return path; }
+    public Date getCreate_at() { return create_at; }
 
     @Override
     public String toString() {
