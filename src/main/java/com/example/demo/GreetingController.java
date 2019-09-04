@@ -54,14 +54,44 @@ public class GreetingController {
         return "setting";
     }
 
+    @PostMapping("/buy_pre")
+    public String buy_pre( Model model, @RequestParam("usr") String usr,  @RequestParam("id") String id) {
 
+        model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
+        model.addAttribute("id", id);
 
+        return "buy_pre";
+    }
 
+    @PostMapping("/sell_pre")
+    public String sell_pre( Model model, @RequestParam("usr") String usr) {
 
+        model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
 
+        return "sell_pre";
+    }
 
+    @PostMapping("/buy")
+    public String buy( Model model, @RequestParam("usr") String usr,  @RequestParam("id") String id) {
 
+        model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
+        model.addAttribute("id", id);
 
+        //ポイントの更新の処理
+        //トランザクション更新の処理
+
+        return "buy";
+    }
+
+    @PostMapping("/sell")
+    public String sell( Model model, @RequestParam("usr") String usr) {
+
+        model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
+
+        //画像ファイル追加の処理
+
+        return "sell";
+    }
 
 
 

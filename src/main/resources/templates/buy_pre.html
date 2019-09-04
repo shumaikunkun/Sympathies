@@ -6,9 +6,13 @@
 </head>
 <body>
 
-<p>販売画面</p>
+<p>販売完了画面</p>
 <p th:text="${usr}+'さん、こんにちわ'" />
-<p th:text="${id}+'番の商品を購入しました。'" />
+<p th:text="${id}+'番の商品を購入しますか？'" />
+
+<form th:action="'buy?usr='+${usr}+'&id=0'" method="post">
+    <input type="submit" />
+</form>
 
 </body>
 </html>

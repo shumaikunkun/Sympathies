@@ -7,8 +7,14 @@
 <body>
 
 <p>販売画面</p>
+<!--<p th:text="${inputUsr.usr}+'さん、こんにちわ'" />-->
+<!--<p th:text="${inputUsr.pass}+'さん、こんにちわ'" />-->
 <p th:text="${usr}+'さん、こんにちわ'" />
-<p th:text="${id}+'番の商品を購入しました。'" />
+<p th:text="'販売しますか？'" />
+
+<form th:action="'sell?usr='+${usr}" method="post">
+    <input type="submit" />
+</form>
 
 </body>
 </html>

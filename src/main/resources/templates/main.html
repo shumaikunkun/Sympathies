@@ -15,5 +15,13 @@
     <input type="submit" />
 </form>
 
+<form th:action="'buy_pre?usr='+${inputUsr.usr}+'&id=0'" method="post">
+    <input type="submit" />
+</form>
+
+<form th:action="'sell_pre?usr='+${inputUsr.usr}" method="post">
+    <input type="submit" />
+</form>
+
 </body>
 </html>
