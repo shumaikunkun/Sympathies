@@ -7,8 +7,13 @@
 <body>
 
 <p>メインページ</p>
-<p th:text="${inputUsr.usr}" />
-<p th:text="${inputUsr.pass}" />
+<p th:text="${inputUsr.usr}+'さん、こんにちわ'" />
+<!--<p th:text="${name}+'さん、こんにちわ'" />-->
+<!--<p th:text="${usr}+'さん、こんにちわ'" />-->
+
+<form th:action="'setting?usr='+${inputUsr.usr}" method="post">
+    <input type="submit" />
+</form>
 
 </body>
 </html>

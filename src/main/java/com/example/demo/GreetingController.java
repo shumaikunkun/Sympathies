@@ -17,32 +17,48 @@ public class GreetingController {
 
     private static final Logger log = LoggerFactory.getLogger(SympathiesApplication.class);
 
-
     @Autowired
     UserRepository repository;
 
+    //String usr;
+
     @GetMapping("/")
-    public String hello(@ModelAttribute("inputUsr") InputUsr inputUsr) {
+    public String login(@ModelAttribute("inputUsr") InputUsr inputUsr) {
         return "login";
     }
 
     @PostMapping(path="/main")
-    public String match(@ModelAttribute("inputUsr") InputUsr inputUsr) {
+    public String main(@ModelAttribute("inputUsr") InputUsr inputUsr) {
+
+        //model.addAttribute("name",inputUsr.getUsr());
+        //usr=inputUsr.getUsr();
+        //model.addAttribute("usr",usr);
 
         // fetch an individual user by ID
         List<User> user = repository.findByMailAndPassward(inputUsr.getUsr(), inputUsr.getPass());
         if (user == null || user.size() == 0) {
             log.info("FALSE");
             return "login";
-
         } else {
             log.info("TRUE");
             return "main";
         }
-
         // System.out.println(inputUsr.getUsr());
-
     }
+
+    @PostMapping("/setting")
+    public String setting( Model model, @RequestParam("usr") String usr) {
+
+        model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
+
+        return "setting";
+    }
+
+
+
+
+
+
 
 
 
