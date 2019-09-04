@@ -18,7 +18,9 @@ public class GreetingController {
     private static final Logger log = LoggerFactory.getLogger(SympathiesApplication.class);
 
     @Autowired
-    UserRepository repository;
+    UserRepository userRepo;
+    @Autowired
+    GoodsRepository goodsRepo;
 
     //String usr;
 
@@ -35,7 +37,7 @@ public class GreetingController {
         //model.addAttribute("usr",usr);
 
         // fetch an individual user by ID
-        List<User> user = repository.findByMailAndPassward(inputUsr.getUsr(), inputUsr.getPass());
+        List<User> user = userRepo.findByMailAndPassward(inputUsr.getUsr(), inputUsr.getPass());
         if (user == null || user.size() == 0) {
             log.info("FALSE");
             return "login";
@@ -43,7 +45,7 @@ public class GreetingController {
             log.info("TRUE");
             return "main";
         }
-        // System.out.println(inputUsr.getUsr());
+
     }
 
     @PostMapping("/setting")
@@ -54,15 +56,14 @@ public class GreetingController {
         return "setting";
     }
 
-
-
-
-
-
-
-
-
-
-
+    @GetMapping(path="/detail")
+    public String detail(@RequestParam("id") String id) {
+        for (Goods goods : goodsRepo.findAll()) {
+            if (goods.getId() == Long.parseLong(id)) {
+                return "detail";
+            }
+        }
+        return "detail";
+    }
 
 }

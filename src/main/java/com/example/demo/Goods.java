@@ -1,6 +1,8 @@
 package com.example.demo;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
 
@@ -8,6 +10,7 @@ import java.util.Date;
 public class Goods {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private Long user_id;
     private String name;
@@ -18,8 +21,7 @@ public class Goods {
 
     protected Goods() {}
 
-    public Goods(Long id, Long user_id, String name, String description, int point, String path) {
-        this.id = id;
+    public Goods(Long user_id, String name, String description, Integer point, String path) {
         this.user_id = user_id;
         this.name = name;
         this.description = description;
@@ -27,6 +29,8 @@ public class Goods {
         this.path = path;
         this.create_at = new Date();
     }
+
+    public Long getId() { return id; }
 
     @Override
     public String toString() {

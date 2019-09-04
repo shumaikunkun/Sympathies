@@ -1,4 +1,3 @@
-
 package com.example.demo;
 
 import org.slf4j.Logger;
@@ -16,19 +15,30 @@ public class SympathiesApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(SympathiesApplication.class);
 
+	UserRepository userRepo;
+	GoodsRepository goodsRepo;
+
 	public static void main(String[] args) {
 		SpringApplication.run(SympathiesApplication.class);
 	}
 
 	@Bean
-	public CommandLineRunner demo(UserRepository repository) {
+	public CommandLineRunner demoUser(UserRepository repository) {
+		userRepo = repository;
 		return (args) -> {
 			// save a couple of users
-			repository.save(new User("test@example.com", "Taro", "passwd", 100));
-			repository.save(new User("test2@example.com", "Hanako", "mypasswd", 50));
+			userRepo.save(new User("test@example.com", "Taro", "passwd", 100));
+			userRepo.save(new User("test2@example.com", "Hanako", "mypasswd", 50));
+		};
+	}
 
-
+	@Bean
+	public CommandLineRunner demoGoods(GoodsRepository repository) {
+		goodsRepo = repository;
+		return (args) -> {
+			// save a couple of users
+			goodsRepo.save(new Goods(1L, "Assignment", "Math", 10, "file"));
+			goodsRepo.save(new Goods(2L, "Assignment2", "English", 10, "file"));
 		};
 	}
 }
-
