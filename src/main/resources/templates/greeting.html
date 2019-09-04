@@ -6,10 +6,8 @@
 </head>
 <body>
 
-<div th:object="${inputUsr}">
-<p th:text="*{usr}" />
-<p th:text="*{pass}" />
-</div>
+<p th:text="${inputUsr.usr}" />
+<p th:text="${inputUsr.pass}" />
 
 </body>
 </html>
