@@ -45,9 +45,10 @@ public class GreetingController {
     @GetMapping(path="/detail")
     public String detail(@RequestParam("id") String id) {
         for (Goods goods : goodsRepo.findAll()) {
-            log.info(goods.toString());
+            if (goods.getId() == Long.parseLong(id)) {
+                return "detail";
+            }
         }
-        log.info("");
         return "detail";
     }
 }

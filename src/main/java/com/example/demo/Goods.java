@@ -30,6 +30,8 @@ public class Goods {
         this.create_at = new Date();
     }
 
+    public Long getId() { return id; }
+
     @Override
     public String toString() {
         return String.format("Goods[id='%d', user_id='%d', name='%s', description='%s', point='%d', path='%s', create_at=%s]",id ,user_id, name, description, point, path, create_at);
