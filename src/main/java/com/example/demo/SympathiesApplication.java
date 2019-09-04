@@ -27,21 +27,7 @@ public class SympathiesApplication {
 			repository.save(new User("test@example.com", "Taro", "passwd", 100));
 			repository.save(new User("test2@example.com", "Hanako", "mypasswd", 50));
 
-			// fetch all users
-			log.info("Users found with findAll():");
-			log.info("---------------------------");
-			for (User user : repository.findAll()) {
-				log.info(user.toString());
-			}
-			log.info("");
 
-			// fetch an individual user by ID
-			List<User> user = repository.findByMailAndPassward("test@example.com", "passwd");
-			if (user == null || user.size() == 0) {
-				log.info("FALSE");
-			} else {
-				log.info("TRUE");
-			}
 		};
 	}
 }
