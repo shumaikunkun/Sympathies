@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
-@Controller
+@org.springframework.stereotype.Controller
 public class GreetingController {
 
     private static final Logger log = LoggerFactory.getLogger(SympathiesApplication.class);
@@ -23,21 +23,21 @@ public class GreetingController {
 
     @GetMapping("/")
     public String hello(@ModelAttribute("inputUsr") InputUsr inputUsr) {
-        return "hello";
+        return "login";
     }
 
-    @PostMapping(path="/match")
+    @PostMapping(path="/main")
     public String match(@ModelAttribute("inputUsr") InputUsr inputUsr) {
 
         // fetch an individual user by ID
         List<User> user = repository.findByMailAndPassward(inputUsr.getUsr(), inputUsr.getPass());
         if (user == null || user.size() == 0) {
             log.info("FALSE");
-            return "hello";
+            return "login";
 
         } else {
             log.info("TRUE");
-            return "match";
+            return "main";
         }
 
         // System.out.println(inputUsr.getUsr());

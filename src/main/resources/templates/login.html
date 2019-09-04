@@ -6,12 +6,12 @@
 </head>
 <body>
 
-<p th:text="'Hello, shuma!!!!'" />
+<p th:text="'ログイン'" />
 
 
-<form th:action="'match'" method="post" th:object="${inputUsr}">
-    <input type="text" th:field="*{usr}" />
-    <input type="text" th:field="*{pass}" />
+<form th:action="'main'" method="post" th:object="${inputUsr}">
+    <input type="text" value="init" th:field="*{usr}" />
+    <input type="text" value="init" th:field="*{pass}" />
     <input type="submit" />
 </form>
 
