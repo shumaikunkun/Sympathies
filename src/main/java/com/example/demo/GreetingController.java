@@ -29,24 +29,14 @@ public class GreetingController {
     @PostMapping(path="/match")
     public String match(@ModelAttribute("inputUsr") InputUsr inputUsr) {
 
+        // fetch an individual user by ID
+        List<User> user = repository.findByMailAndPassward(inputUsr.getUsr(), inputUsr.getPass());
+        if (user == null || user.size() == 0) {
+            log.info("FALSE");
 
-            // fetch an individual user by ID
-            List<User> user = repository.findByMailAndPassward("test@example.com", "passwd");
-            if (user == null || user.size() == 0) {
-                log.info("FALSE");
-            } else {
-                log.info("TRUE");
-            }
-
-
-//        // fetch an individual user by ID
-//        List<User> user = repository.findByMailAndPassward(inputUsr.getUsr(), inputUsr.getPass());
-//        if (user == null || user.size() == 0) {
-//            log.info("FALSE");
-//        } else {
-//            log.info("TRUE");
-//        }
-
+        } else {
+            log.info("TRUE");
+        }
 
         // System.out.println(inputUsr.getUsr());
         return "match";
