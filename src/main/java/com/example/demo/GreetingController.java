@@ -33,13 +33,15 @@ public class GreetingController {
         List<User> user = repository.findByMailAndPassward(inputUsr.getUsr(), inputUsr.getPass());
         if (user == null || user.size() == 0) {
             log.info("FALSE");
+            return "hello";
 
         } else {
             log.info("TRUE");
+            return "match";
         }
 
         // System.out.println(inputUsr.getUsr());
-        return "match";
+
     }
 
 
