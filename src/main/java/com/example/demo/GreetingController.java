@@ -16,9 +16,11 @@ public class GreetingController {
         return "hello";
     }
 
-    @PostMapping(path="/greeting")
-    public String greeting(@ModelAttribute("inputUsr") InputUsr inputUsr) {
-        return "greeting";
+    @PostMapping(path="/match")
+    public String match(@ModelAttribute("inputUsr") InputUsr inputUsr) {
+
+        System.out.println(inputUsr.getUsr());
+        return "match";
     }
 
 
