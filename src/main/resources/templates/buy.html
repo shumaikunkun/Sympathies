@@ -10,5 +10,9 @@
 <p th:text="${usr}+'さん、こんにちわ'" />
 <p th:text="${id}+'番の商品を購入しました。'" />
 
+<form th:action="'main?usr='+${usr}" method="post">
+    <input type="submit" />
+</form>
+
 </body>
 </html>

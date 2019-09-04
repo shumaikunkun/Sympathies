@@ -28,21 +28,27 @@ public class GreetingController {
     }
 
     @PostMapping(path="/main")
-    public String main(@ModelAttribute("inputUsr") InputUsr inputUsr) {
+    public String main(Model model, @ModelAttribute("inputUsr") InputUsr inputUsr, @RequestParam(name="usr",required=false) String usr ) {
 
         //model.addAttribute("name",inputUsr.getUsr());
         //usr=inputUsr.getUsr();
         //model.addAttribute("usr",usr);
 
+        log.info("-------"+ usr);
+
+        model.addAttribute("usr", usr!=null ? usr : inputUsr.getMail());
+
         // fetch an individual user by ID
-        List<User> user = repository.findByMailAndPassward(inputUsr.getUsr(), inputUsr.getPass());
-        if (user == null || user.size() == 0) {
+        List<User> user = repository.findByMailAndPassward(inputUsr.getMail(), inputUsr.getPass());
+        if ((user == null || user.size() == 0 ) && usr==null) {
             log.info("FALSE");
             return "login";
         } else {
             log.info("TRUE");
             return "main";
         }
+
+
         // System.out.println(inputUsr.getUsr());
     }
 
