@@ -1,3 +1,4 @@
+
 package com.example.demo;
 
 import org.slf4j.Logger;
@@ -44,3 +45,4 @@ public class SympathiesApplication {
 		};
 	}
 }
+
