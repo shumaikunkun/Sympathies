@@ -12,27 +12,22 @@ public class Goods {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-    private Long user_id;
+    private Long userId;
     private String name;
     private String description;
     private Integer point;
     private String path;
-    private Date create_at;
+    private Date createAt;
 
     protected Goods() {}
 
-    public Goods(Long user_id, String name, String description, Integer point, String path) {
-        this.user_id = user_id;
+    public Goods(Long userId, String name, String description, Integer point, String path) {
+        this.userId = userId;
         this.name = name;
         this.description = description;
         this.point = point;
         this.path = path;
-        this.create_at = new Date();
-    }
-
-    @Override
-    public String toString() {
-        return String.format("Goods[id='%d', user_id='%d', name='%s', description='%s', point='%d', path='%s', create_at=%s]", id, user_id, name, description, point, path, create_at);
+        this.createAt = new Date();
     }
 
     public Long getId() {
@@ -43,12 +38,12 @@ public class Goods {
         this.id = id;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -83,11 +78,17 @@ public class Goods {
         this.path = path;
     }
 
-    public Date getCreate_at() {
-        return create_at;
+    public Date getCreateAt() {
+        return createAt;
     }
 
-    public void setCreate_at(Date create_at) {
-        this.create_at = create_at;
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Goods[id='%d', userId='%d', name='%s', description='%s', point='%d', path='%s', createAt=%s]",id ,userId, name, description, point, path, createAt);
+    }
+
 }
