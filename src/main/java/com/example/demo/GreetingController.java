@@ -138,9 +138,9 @@ public class GreetingController {
         log.info(inputGoods.getName());
         log.info(inputGoods.getDescription());
 
-
         //goodsデータベースに追加
-        goodsRepo.save(new Goods(1L, "aaa", "aaa", 100, "images/"+upfile.getOriginalFilename()));
+        goodsRepo.save(new Goods(1L, inputGoods.getName(), inputGoods.getDescription(), inputGoods.getPoint(), "images/"+upfile.getOriginalFilename()));
+        //usrIDをメアドからとってくる
 
         return "sell";
     }
