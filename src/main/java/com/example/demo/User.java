@@ -12,9 +12,6 @@ public class User {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String mail;
-
-
-
     private String name;
     private String passward;
     private Integer point;
