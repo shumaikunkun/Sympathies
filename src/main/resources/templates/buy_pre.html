@@ -11,7 +11,10 @@
 <p th:text="${id}+'番の商品を購入しますか？'" />
 
 <form th:action="'buy?usr='+${usr}+'&id=0'" method="post">
-    <input type="submit" />
+    <input type="submit" value="購入" />
+</form>
+<form th:action="'main?usr='+${usr}" method="post">
+    <input type="submit" value="キャンセル" />
 </form>
 
 </body>

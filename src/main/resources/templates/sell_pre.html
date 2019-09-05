@@ -13,7 +13,11 @@
 <p th:text="'販売しますか？'" />
 
 <form th:action="'sell?usr='+${usr}" method="post">
-    <input type="submit" />
+    <input type="submit" value="出品"/>
+</form>
+
+<form th:action="'main?usr='+${usr}" method="post">
+    <input type="submit" value="キャンセル"/>
 </form>
 
 </body>
