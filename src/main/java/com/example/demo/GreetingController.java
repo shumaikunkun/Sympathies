@@ -88,7 +88,7 @@ public class GreetingController {
                 String sellUserName = sellUser.get().getName();
                 log.info("usernameは"+sellUserName);
                 itemTf.setUserName(sellUserName);
-                goodsTf.add(itemTf);
+                //goodsTf.add(itemTf);  //これ消したら同じの二枚表示されなくなる
 
                 if (item.getUserId() == userId) {
                     // ログインユーザの出品物はTRUE
