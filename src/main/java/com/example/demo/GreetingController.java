@@ -49,6 +49,8 @@ public class GreetingController {
             return "login";
         } else {
             log.info("TRUE");
+            log.info(goodsRepo.findAll().toString());
+            model.addAttribute("goods", goodsRepo.findAll());
             return "main";
         }
 
