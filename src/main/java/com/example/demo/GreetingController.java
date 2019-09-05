@@ -119,10 +119,12 @@ public class GreetingController {
 
 
     @PostMapping("/buy_pre")
-    public String buy_pre(Model model, @RequestParam("usr") String usr,  @RequestParam("id") String id) {
+    public String buy_pre(Model model, @RequestParam("usr") String usr,  @RequestParam("id") String id,  @RequestParam("tf") String tf) {
 
         model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
         model.addAttribute("id", id);
+        model.addAttribute("tf", tf);
+
 
         List<User> users = userRepo.findByMail(usr);
         String userName = users.get(0).getName(); //ユーザ名
