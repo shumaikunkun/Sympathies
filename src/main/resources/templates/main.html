@@ -75,7 +75,7 @@
 
                         <div th:if="${item.bought}">
                             <div class="card mb-4 shadow-sm">
-                                <img class="bd-placeholder-img card-img-top" width="100%" height="225" th:src="${item.path}" />
+                                <img class="bd-placeholder-img card-img-top" width="100%" height="225" th:src="${item.path}"/>
 <!--                                <img   preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></img>-->
                                 <div class="card-body">
                                     <p>商品名：</p>
@@ -95,7 +95,7 @@
                         </div>
                         <div th:unless="${item.bought}">
                             <div class="card mb-4 shadow-sm">
-                                <img class="bd-placeholder-img card-img-top" width="100%" height="225" th:src="@{/images/noimage.png}" />
+                                <img class="bd-placeholder-img card-img-top" width="100%" height="225" th:src="${item.path}" style="filter: blur(9px);"/>
 <!--                                <img   preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></img>-->
                                 <div class="card-body">
                                     <p>商品名：</p>
