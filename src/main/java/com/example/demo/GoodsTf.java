@@ -109,7 +109,7 @@ public class GoodsTf {
 
     @Override
     public String toString() {
-        return String.format("Goods[id='%d', userId='%d', name='%s', description='%s', point='%d', path='%s', createAt=%s]",id ,userId, name, description, point, path, createAt);
+        return String.format("GoodsTf[id='%d', userId='%d', name='%s', description='%s', point='%d', path='%s', createAt='%s', isBought='%b']",id ,userId, name, description, point, path, createAt, isBought);
     }
 
 

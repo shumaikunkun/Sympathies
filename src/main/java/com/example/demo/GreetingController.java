@@ -64,26 +64,27 @@ public class GreetingController {
             List<Goods> goods = goodsRepo.findAll();
             log.info("グッズ一覧＝＞ "+goods.toString());
 
-            List<User> users =userRepo.findByMail(usr);
-            log.info("ユーザID＝＞ "+users.get(0).getId());
-
-            List<Transaction> transactions =transactionRepo.findAll();
-
-            //List<Goods> boughtList = new ArrayList<Goods>();
-
-
-
-            List<GoodsTf> goodsTf= new ArrayList<GoodsTf>;
-
-            for (GoodsTf itemTf : goodsTf) {
-
+            // 全商品リストに対し、ログインユーザが購入しているかどうかという情報を持たせたgoodsTsのリストを作成
+            List<GoodsTf> goodsTf = new ArrayList<GoodsTf>();
+            log.info(usr!=null ? usr : inputUsr.getMail());
+            List<User> users = userRepo.findByMail(usr!=null ? usr : inputUsr.getMail());
+            if (users == null || users.size() == 0) {
+                return "error";
+            }
+            Long userId = users.get(0).getId();
+            for (Goods item : goods) {
+                GoodsTf itemTf = new GoodsTf();
+                itemTf.copyGoods(item);
+                List<Transaction> tran = transactionRepo.findByDestinationUserIdAndGoodsId(userId, item.getId());
+                if (tran == null || tran.size() == 0) {
+                    itemTf.setBought(false);
+                } else {
+                    itemTf.setBought(true);
+                }
+                goodsTf.add(itemTf);
             }
 
-//            List<GoodsTf> goodsTf;
-//            new GoodsTf(goodsTf)=
-            goodsTf.copyGoods(goods);
-
-            //model.addAttribute("goods", goodsRepo.findAll());
+            model.addAttribute("goods", goodsTf);
 
             return "main";
         }
