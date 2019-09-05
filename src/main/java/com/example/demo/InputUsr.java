@@ -4,16 +4,14 @@ package com.example.demo;
 public class InputUsr {
 
 
-    private String usr;
+    private String mail;
     private String pass;
 
-    public String getUsr() {
-        return usr;
+    public String getMail() {
+        return mail;
     }
 
-    public void setUsr(String usr) {
-        this.usr = usr;
-    }
+    public void setMail(String mail) { this.mail = mail; }
 
     public String getPass() {
         return pass;

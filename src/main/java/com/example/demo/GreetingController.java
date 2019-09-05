@@ -30,21 +30,25 @@ public class GreetingController {
     }
 
     @PostMapping(path="/main")
-    public String main(@ModelAttribute("inputUsr") InputUsr inputUsr, Model model) {
+    public String main(Model model, @ModelAttribute("inputUsr") InputUsr inputUsr, @RequestParam(name="usr",required=false) String usr ) {
 
         //model.addAttribute("name",inputUsr.getUsr());
         //usr=inputUsr.getUsr();
         //model.addAttribute("usr",usr);
 
+        log.info("-------"+ usr);
+
+        model.addAttribute("usr", usr!=null ? usr : inputUsr.getMail());
+
         // fetch an individual user by ID
-        List<User> user = userRepo.findByMailAndPassward(inputUsr.getUsr(), inputUsr.getPass());
-        if (user == null || user.size() == 0) {
+
+        List<User> user = userRepo.findByMailAndPassward(inputUsr.getMail(), inputUsr.getPass());
+        if ((user == null || user.size() == 0 ) && usr==null) {
+
             log.info("FALSE");
             return "login";
         } else {
             log.info("TRUE");
-            log.info(goodsRepo.findAll().toString());
-            model.addAttribute("goods", goodsRepo.findAll());
             return "main";
         }
 
@@ -58,9 +62,15 @@ public class GreetingController {
         return "setting";
     }
 
-    @GetMapping("/detail")
-    public String detail(Model model, @RequestParam("id") String id) {
+
+    @PostMapping("/buy_pre")
+    public String buy_pre(Model model, @RequestParam("usr") String usr,  @RequestParam("id") String id) {
+
+        model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
+        model.addAttribute("id", id);
+
         for (Goods goods : goodsRepo.findAll()) {
+
             if (goods.getId() == Long.parseLong(id)) {
                 model.addAttribute("id", goods.getId());
                 model.addAttribute("name", goods.getName());
@@ -68,10 +78,43 @@ public class GreetingController {
                 model.addAttribute("point", goods.getPoint());
                 model.addAttribute("path", goods.getPath());
                 model.addAttribute("create_at", goods.getCreate_at());
-                return "detail";
+                return "buy_pre";
             }
         }
-        return "detail";
+        return "error";
     }
 
+    @PostMapping("/sell_pre")
+    public String sell_pre( Model model, @RequestParam("usr") String usr) {
+
+        model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
+
+        return "sell_pre";
+    }
+
+    @PostMapping("/buy")
+    public String buy( Model model, @RequestParam("usr") String usr,  @RequestParam("id") String id) {
+
+        model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
+        model.addAttribute("id", id);
+
+        //ポイントの更新の処理
+        //トランザクション更新の処理
+
+        return "buy";
+    }
+
+    @PostMapping("/sell")
+    public String sell( Model model, @RequestParam("usr") String usr) {
+
+        model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
+
+        //画像ファイル追加の処理
+
+        return "sell";
+    }
+
+
+
 }
+
