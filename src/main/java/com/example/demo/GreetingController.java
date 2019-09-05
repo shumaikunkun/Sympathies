@@ -49,8 +49,6 @@ public class GreetingController {
         //usr=inputUsr.getUsr();
         //model.addAttribute("usr",usr);
 
-        log.info("-------"+ usr);
-
         model.addAttribute("usr", usr!=null ? usr : inputUsr.getMail());
 
         // fetch an individual user by ID
@@ -58,12 +56,36 @@ public class GreetingController {
         List<User> user = userRepo.findByMailAndPassward(inputUsr.getMail(), inputUsr.getPass());
         if ((user == null || user.size() == 0 ) && usr==null) {
 
-            log.info("FALSE");
+            log.info("ログイン＝＞ FALSE");
             return "login";
         } else {
-            log.info("TRUE");
-            log.info(goodsRepo.findAll().toString());
-            model.addAttribute("goods", goodsRepo.findAll());
+            log.info("ログイン＝＞ TRUE");
+
+            List<Goods> goods = goodsRepo.findAll();
+            log.info("グッズ一覧＝＞ "+goods.toString());
+
+            // 全商品リストに対し、ログインユーザが購入しているかどうかという情報を持たせたgoodsTsのリストを作成
+            List<GoodsTf> goodsTf = new ArrayList<GoodsTf>();
+            log.info(usr!=null ? usr : inputUsr.getMail());
+            List<User> users = userRepo.findByMail(usr!=null ? usr : inputUsr.getMail());
+            if (users == null || users.size() == 0) {
+                return "error";
+            }
+            Long userId = users.get(0).getId();
+            for (Goods item : goods) {
+                GoodsTf itemTf = new GoodsTf();
+                itemTf.copyGoods(item);
+                List<Transaction> tran = transactionRepo.findByDestinationUserIdAndGoodsId(userId, item.getId());
+                if (tran == null || tran.size() == 0) {
+                    itemTf.setBought(false);
+                } else {
+                    itemTf.setBought(true);
+                }
+                goodsTf.add(itemTf);
+            }
+
+            model.addAttribute("goods", goodsTf);
+
             return "main";
         }
     }
