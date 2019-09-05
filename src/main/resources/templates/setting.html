@@ -1,15 +1,34 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
+
 <body>
 
-<p>設定画面</p>
-<!--<p th:text="${inputUsr.usr}+'さん、こんにちわ'" />-->
-<!--<p th:text="${inputUsr.pass}+'さん、こんにちわ'" />-->
-<p th:text="${usr}+'さん、こんにちわ'" />
+    <header>
+        <nav class="navbar navbar-light" style="background-color: cornflowerblue;">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a> <a
+                        class="nav-item nav-link" href="#">Features</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <p>設定画面</p>
+    <!--<p th:text="${inputUsr.usr}+'さん、こんにちわ'" />-->
+    <!--<p th:text="${inputUsr.pass}+'さん、こんにちわ'" />-->
+    <p th:text="${usr}+'さん、こんにちわ'" />
 
 </body>
+
 </html>

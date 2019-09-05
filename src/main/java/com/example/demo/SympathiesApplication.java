@@ -2,13 +2,10 @@ package com.example.demo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import java.util.List;
 
 @SpringBootApplication
 public class SympathiesApplication {
@@ -22,6 +19,7 @@ public class SympathiesApplication {
 		SpringApplication.run(SympathiesApplication.class);
 	}
 
+
 	@Bean
 	public CommandLineRunner demoUser(UserRepository repository) {
 		userRepo = repository;
@@ -29,8 +27,10 @@ public class SympathiesApplication {
 			// save a couple of users
 			userRepo.save(new User("test@example.com", "Taro", "passwd", 100));
 			userRepo.save(new User("test2@example.com", "Hanako", "mypasswd", 50));
+			userRepo.save(new User("email","masa","ps",10));
 		};
 	}
+
 
 	@Bean
 	public CommandLineRunner demoGoods(GoodsRepository repository) {
@@ -41,4 +41,5 @@ public class SympathiesApplication {
 			goodsRepo.save(new Goods(2L, "Assignment2", "English", 10, "file"));
 		};
 	}
+
 }
