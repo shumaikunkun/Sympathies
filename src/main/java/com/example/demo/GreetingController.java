@@ -135,6 +135,7 @@ public class GreetingController {
         }
 
         //goodsデータベースに追加
+
         goodsRepo.save(new Goods(1L, "aaa", "aaa", 100, "images/"+upfile.getOriginalFilename()));
 
         return "sell";
