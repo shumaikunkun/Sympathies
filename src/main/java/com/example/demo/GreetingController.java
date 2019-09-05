@@ -19,6 +19,8 @@ import java.nio.file.Paths;
 import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
+
 @org.springframework.stereotype.Controller
 public class GreetingController {
 
@@ -115,13 +117,13 @@ public class GreetingController {
 
 
     @PostMapping("/sell")
-    public String sell( Model model, @RequestParam("usr") String usr, @RequestParam("upload_file") MultipartFile upfile) {
+    public String sell( Model model, @RequestParam("usr") String usr, @RequestParam(name="upload_file",required=false) MultipartFile upfile) {
 
         if (!upfile.isEmpty()) {
             try {
-                //cm.setImgUrl(upfile.getOriginalFilename());
+
                 byte[] bytes = upfile.getBytes();
-                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static/images/"+"1.jpg")));
+                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static/images/"+upfile.getOriginalFilename())));
                 stream.write(bytes);
                 stream.close();
             } catch (Exception e) {
@@ -130,10 +132,10 @@ public class GreetingController {
         }
 
 
-        //model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
+        model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
 
         //画像ファイル追加の処理
-        model.addAttribute("originalFilename", upfile.getOriginalFilename());
+        //model.addAttribute("path", "src/main/resources/static/images/"+"1.jpg");
 
         //goodsデータベースに追加
 
