@@ -12,10 +12,17 @@
 <p th:text="${usr}+'さん、こんにちわ'" />
 <p th:text="'販売しますか？'" />
 
-<form th:action="'sell?usr='+${usr}" method="post" enctype="multipart/form-data">
+<form th:action="'sell?usr='+${usr}" method="post" enctype="multipart/form-data" th:object="${inputGoods}">
     <input type="file" name="upload_file" /><br />
+    <input type="text" placeholder="商品名" value="init" th:field="*{name}" /><br />
+    <input type="text" placeholder="説明" value="init" th:field="*{description}" /><br />
+    <input type="number" placeholder="ポイント" value="init" th:field="*{point}" /><br />
     <input type="submit" value="出品"/>
 </form>
+
+
+
+
 
 <form th:action="'main?usr='+${usr}" method="post">
     <input type="submit" value="キャンセル"/>

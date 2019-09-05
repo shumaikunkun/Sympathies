@@ -106,7 +106,7 @@ public class GreetingController {
     }
 
     @PostMapping("/sell_pre")
-    public String sell_pre( Model model, @RequestParam("usr") String usr) {
+    public String sell_pre( Model model, @RequestParam("usr") String usr, @ModelAttribute("inputGoods") InputGoods inputGoods) {
 
         model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
 
@@ -117,7 +117,7 @@ public class GreetingController {
 
 
     @PostMapping("/sell")
-    public String sell( Model model, @RequestParam("usr") String usr, @RequestParam(name="upload_file",required=false) MultipartFile upfile) {
+    public String sell( Model model, @RequestParam("usr") String usr, @RequestParam(name="upload_file",required=false) MultipartFile upfile, @ModelAttribute("inputGoods") InputGoods inputGoods) {
 
         model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
 
@@ -134,8 +134,12 @@ public class GreetingController {
             }
         }
 
-        //goodsデータベースに追加
+        //画像の説明の処理
+        log.info(inputGoods.getName());
+        log.info(inputGoods.getDescription());
 
+
+        //goodsデータベースに追加
         goodsRepo.save(new Goods(1L, "aaa", "aaa", 100, "images/"+upfile.getOriginalFilename()));
 
         return "sell";
