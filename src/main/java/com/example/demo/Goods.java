@@ -30,17 +30,64 @@ public class Goods {
         this.create_at = new Date();
     }
 
-    public Long getId() { return id; }
-    public Long getUser_id() { return user_id; }
-    public String getName() { return name; }
-    public String getDescription() { return description; }
-    public Integer getPoint() { return point; }
-    public String getPath() { return path; }
-    public Date getCreate_at() { return create_at; }
-
     @Override
     public String toString() {
-        return String.format("Goods[id='%d', user_id='%d', name='%s', description='%s', point='%d', path='%s', create_at=%s]",id ,user_id, name, description, point, path, create_at);
+        return String.format("Goods[id='%d', user_id='%d', name='%s', description='%s', point='%d', path='%s', create_at=%s]", id, user_id, name, description, point, path, create_at);
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getPoint() {
+        return point;
+    }
+
+    public void setPoint(Integer point) {
+        this.point = point;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public Date getCreate_at() {
+        return create_at;
+    }
+
+    public void setCreate_at(Date create_at) {
+        this.create_at = create_at;
+    }
 }

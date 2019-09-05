@@ -38,7 +38,11 @@ public class SympathiesApplication {
 		return (args) -> {
 			// save a couple of users
 			goodsRepo.save(new Goods(1L, "Assignment", "Math", 10, "images/document_regulation.png"));
-			goodsRepo.save(new Goods(2L, "Assignment2", "English", 10, "file"));
+			goodsRepo.save(new Goods(2L, "Assignment2", "English", 10, "images/math.png"));
+
+			for (Goods item : goodsRepo.findAll()) {
+				log.info(item.toString());
+			}
 		};
 	}
 }
