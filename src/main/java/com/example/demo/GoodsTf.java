@@ -16,10 +16,8 @@ public class GoodsTf {
     private Integer point;
     private String path;
     private Date createAt;
-    private boolean isBought;
-
-
-
+    private boolean isBought;  //追加
+    private String userName;  //追加
 
 
     protected GoodsTf() {}
@@ -93,6 +91,10 @@ public class GoodsTf {
         return isBought;
     }
 
+    public String getUserName() { return userName; }
+
+    public void setUserName(String userName) { this.userName = userName; }
+
     public void setBought(boolean bought) {
         isBought = bought;
     }
@@ -109,7 +111,7 @@ public class GoodsTf {
 
     @Override
     public String toString() {
-        return String.format("GoodsTf[id='%d', userId='%d', name='%s', description='%s', point='%d', path='%s', createAt='%s', isBought='%b']",id ,userId, name, description, point, path, createAt, isBought);
+        return String.format("GoodsTf[id='%d', userId='%d', name='%s', description='%s', point='%d', path='%s', createAt='%s', isBought='%b', userName='%b']",id ,userId, name, description, point, path, createAt, isBought, userName);
     }
 
 

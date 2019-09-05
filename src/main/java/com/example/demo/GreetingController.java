@@ -77,11 +77,19 @@ public class GreetingController {
             model.addAttribute("name", userName);
             model.addAttribute("point", userPoint);
 
-
             Long userId = users.get(0).getId(); //ユーザID
             for (Goods item : goods) {
                 GoodsTf itemTf = new GoodsTf();
-                itemTf.copyGoods(item);
+                itemTf.copyGoods(item);  //中身をコピー
+
+                //ユーザーIDからユーザー名を取り出して、GoodsTfの属性に追加（グッズそれぞれに出品者名を表示したい）
+                //log.info("userIDは"+item.getUserId());
+                Optional<User> sellUser = userRepo.findById(item.getUserId());
+                String sellUserName = sellUser.get().getName();
+                //log.info("usernameは"+sellUserName);
+                itemTf.setUserName(sellUserName);
+                //goodsTf.add(itemTf);  //これ消したら同じの二枚表示されなくなる
+
                 if (item.getUserId() == userId) {
                     // ログインユーザの出品物はTRUE
                     itemTf.setBought(true);
@@ -119,10 +127,12 @@ public class GreetingController {
 
 
     @PostMapping("/buy_pre")
-    public String buy_pre(Model model, @RequestParam("usr") String usr,  @RequestParam("id") String id) {
+    public String buy_pre(Model model, @RequestParam("usr") String usr,  @RequestParam("id") String id,  @RequestParam("tf") String tf) {
 
         model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
         model.addAttribute("id", id);
+        model.addAttribute("tf", tf);
+
 
         List<User> users = userRepo.findByMail(usr);
         String userName = users.get(0).getName(); //ユーザ名
@@ -133,6 +143,11 @@ public class GreetingController {
         for (Goods goods : goodsRepo.findAll()) {
 
             if (goods.getId() == Long.parseLong(id)) {
+
+                Optional<User>  sellUsers = userRepo.findById(goods.getUserId());
+                //log.info("出品者は"+sellUsers.get().getName());
+                model.addAttribute("sellUser",sellUsers.get().getName());  //出品者名
+
                 model.addAttribute("id", goods.getId());
                 model.addAttribute("name", goods.getName());
                 model.addAttribute("description", goods.getDescription());
