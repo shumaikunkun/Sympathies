@@ -7,5 +7,6 @@ import java.util.List;
 public interface TransactionRepository extends CrudRepository<Transaction, Long> {
 
     List<Transaction> findByDestinationUserId(Long id);
+    List<Transaction> findByDestinationUserIdAndGoodsId(Long destinationUserId, Long goodsId);
     List<Transaction> findAll();
 }
