@@ -83,10 +83,10 @@ public class GreetingController {
                 itemTf.copyGoods(item);  //中身をコピー
 
                 //ユーザーIDからユーザー名を取り出して、GoodsTfの属性に追加（グッズそれぞれに出品者名を表示したい）
-                log.info("userIDは"+item.getUserId());
+                //log.info("userIDは"+item.getUserId());
                 Optional<User> sellUser = userRepo.findById(item.getUserId());
                 String sellUserName = sellUser.get().getName();
-                log.info("usernameは"+sellUserName);
+                //log.info("usernameは"+sellUserName);
                 itemTf.setUserName(sellUserName);
                 //goodsTf.add(itemTf);  //これ消したら同じの二枚表示されなくなる
 
