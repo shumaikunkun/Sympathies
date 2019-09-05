@@ -11,5 +11,9 @@
 <!--<p th:text="${inputUsr.pass}+'さん、こんにちわ'" />-->
 <p th:text="${usr}+'さん、こんにちわ'" />
 
+<form th:action="'main?usr='+${usr}" method="post">
+    <input type="submit" />
+</form>
+
 </body>
 </html>
