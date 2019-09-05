@@ -15,12 +15,14 @@ body{
 
 }
 
-.image col-md-6{
-    margin-left:20px;
-    margin-top:20px;
+.image col-md-5{
+    margin-left:50px;
+    margin-top:70px;
+    padding-left: 30px;
+    
 }
 
-.goods_table col-md-6{
+.goods_all col-md-6{
     margin-left:40px;
 }
 
@@ -82,7 +84,7 @@ h4{
         background-color: white; 
         border: 2px solid blue; 
         width: 200px;
-        margin-left: 540px;
+        margin-left: 350px;
         border-radius: 3px;
         transition: .4s;
     }
@@ -105,7 +107,7 @@ h4{
     border-radius: 3px;
     transition: .4s;
     width:130px;
-    margin-left:540px;
+    margin-left:350px;
 }
 
 .cansel input:hover{
@@ -122,3 +124,13 @@ h4{
     border: 1px solid black;
 }
 
+
+.subtitle h2{
+    color:orangered;
+    
+}
+
+.subtitle p{
+    border:1px solid black;
+    margin-right: 600px;
+}
