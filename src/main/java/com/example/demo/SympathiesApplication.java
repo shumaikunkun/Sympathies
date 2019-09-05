@@ -52,7 +52,7 @@ public class SympathiesApplication {
 		transactionRepo = repository;
 		return (args) -> {
 			// save a couple of users
-			transactionRepo.save(new Transaction(1L, 2L, 3L));
+			transactionRepo.save(new Transaction(1L, 2L, 4L));
 		};
 	}
 

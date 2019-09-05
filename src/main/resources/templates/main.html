@@ -23,6 +23,10 @@
     <input type="submit" value="出品" />
 </form>
 
+<form th:action="'history?usr='+${usr}" method="post">
+    <input type="submit" value="取引履歴" />
+</form>
+
 <!--<tr th:if="${not #lists.isEmpty(goods)}">-->
     <ul class="item-view">
     <tr th:each="item : ${goods}">

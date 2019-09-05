@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface TransactionRepository extends CrudRepository<Transaction, Long> {
 
-    List<Transaction> findById(String id);
+    List<Transaction> findByDestinationUserId(Long id);
     List<Transaction> findAll();
 }

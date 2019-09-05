@@ -16,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.web.multipart.MultipartFile;
@@ -186,6 +187,27 @@ public class GreetingController {
         return "sell";
     }
 
+    @PostMapping("/history")
+    public String history(Model model, @RequestParam("usr") String usr) {
+        // ログインユーザの取得
+        List<User> users = userRepo.findByMail(usr);
+        if (users == null || users.size() == 0) {
+            return "error";
+        }
 
+        // ログインユーザが購入した商品一覧の取得
+        List<Goods> boughtList = new ArrayList<Goods>();
+        List<Transaction> transactions = transactionRepo.findByDestinationUserId(users.get(0).getId());
+        for (Transaction transaction : transactions) {
+            Optional<Goods> item = goodsRepo.findById(transaction.getGoodsId());
+            if (!item.isPresent()) continue;
+            boughtList.add(item.get());
+        }
 
+        // modelに追加
+        model.addAttribute("usr", usr);
+        model.addAttribute("goods", boughtList);
+
+        return "history";
+    }
 }
