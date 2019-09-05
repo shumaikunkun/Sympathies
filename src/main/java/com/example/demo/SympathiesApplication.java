@@ -37,7 +37,7 @@ public class SympathiesApplication {
 		goodsRepo = repository;
 		return (args) -> {
 			// save a couple of users
-			goodsRepo.save(new Goods(1L, "Assignment", "Math", 10, "file"));
+			goodsRepo.save(new Goods(1L, "Assignment", "Math", 10, "images/document_regulation.png"));
 			goodsRepo.save(new Goods(2L, "Assignment2", "English", 10, "file"));
 		};
 	}
