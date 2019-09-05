@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @org.springframework.stereotype.Controller
 public class GreetingController {
@@ -21,6 +22,8 @@ public class GreetingController {
     UserRepository userRepo;
     @Autowired
     GoodsRepository goodsRepo;
+    @Autowired
+    TransactionRepository transactionRepo;
 
     //String usr;
 
@@ -79,7 +82,7 @@ public class GreetingController {
                 model.addAttribute("description", goods.getDescription());
                 model.addAttribute("point", goods.getPoint());
                 model.addAttribute("path", goods.getPath());
-                model.addAttribute("create_at", goods.getCreate_at());
+                model.addAttribute("createAt", goods.getCreateAt());
                 return "buy_pre";
             }
         }
@@ -100,8 +103,41 @@ public class GreetingController {
         model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
         model.addAttribute("id", id);
 
-        //ポイントの更新の処理
-        //トランザクション更新の処理
+        // 送信元ユーザ、送信先ユーザ、商品の取得
+        List<User> destUsers = userRepo.findByMail(usr);
+        if (destUsers == null || destUsers.size() == 0) {
+            return "error";
+        }
+        User destUser = destUsers.get(0);
+        Optional<Goods> itemOpt = goodsRepo.findById(Long.parseLong(id));
+        if (!itemOpt.isPresent()) {
+            return "error";
+        }
+        Goods item = itemOpt.get();
+        Optional<User> senderOpt = userRepo.findById(item.getUserId());
+        if (!senderOpt.isPresent()) {
+            return "error";
+        }
+        User sender = senderOpt.get();
+
+        // 出品者と購入者が同じときエラー
+        if (item.getUserId() == destUsers.get(0).getId()) {
+            return "error";
+        }
+
+        // ポイント数が足りないときエラー
+        if (destUser.getPoint() - item.getPoint() < 0) {
+            return "error";
+        }
+
+        // トランザクション更新の処理
+        transactionRepo.save(new Transaction(item.getUserId(), destUser.getId(), item.getId()));
+
+        // ポイントの更新の処理
+        sender.setPoint(sender.getPoint() + item.getPoint());
+        destUser.setPoint(destUser.getPoint() - item.getPoint());
+        userRepo.save(sender);
+        userRepo.save(destUser);
 
         return "buy";
     }
@@ -119,4 +155,3 @@ public class GreetingController {
 
 
 }
-
