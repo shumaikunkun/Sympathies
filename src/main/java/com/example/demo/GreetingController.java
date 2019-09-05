@@ -75,6 +75,12 @@ public class GreetingController {
             for (Goods item : goods) {
                 GoodsTf itemTf = new GoodsTf();
                 itemTf.copyGoods(item);
+                if (item.getUserId() == userId) {
+                    // ログインユーザの出品物はTRUE
+                    itemTf.setBought(true);
+                    goodsTf.add(itemTf);
+                    continue;
+                }
                 List<Transaction> tran = transactionRepo.findByDestinationUserIdAndGoodsId(userId, item.getId());
                 if (tran == null || tran.size() == 0) {
                     itemTf.setBought(false);
