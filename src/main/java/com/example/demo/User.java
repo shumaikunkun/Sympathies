@@ -18,6 +18,10 @@ public class User {
 
     protected User() {}
 
+    public Long getId() { return id; }
+    public Integer getPoint() { return point; }
+    public void setPoint(Integer point) { this.point = point; }
+
     public User(String mail, String name, String passward, Integer point) {
         this.mail = mail;
         this.name = name;

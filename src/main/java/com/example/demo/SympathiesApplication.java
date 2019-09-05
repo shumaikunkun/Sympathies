@@ -17,6 +17,7 @@ public class SympathiesApplication {
 
 	UserRepository userRepo;
 	GoodsRepository goodsRepo;
+	TransactionRepository transactionRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SympathiesApplication.class);
@@ -51,4 +52,14 @@ public class SympathiesApplication {
 			}
 		};
 	}
+
+	@Bean
+	public CommandLineRunner demoTransaction(TransactionRepository repository) {
+		transactionRepo = repository;
+		return (args) -> {
+			// save a couple of users
+			transactionRepo.save(new Transaction(1L, 2L, 4L));
+		};
+	}
+
 }

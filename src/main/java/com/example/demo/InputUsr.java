@@ -21,6 +21,4 @@ public class InputUsr {
         this.pass = pass;
     }
 
-    //  Getter, Setterは省略
-
 }

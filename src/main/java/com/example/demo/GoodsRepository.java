@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface GoodsRepository extends CrudRepository<Goods, Long> {
 
-    List<Goods> findById(String id);
+    List<Goods> findByUserId(Long id);
     List<Goods> findAll();
     Goods findByName(String name);
 }
