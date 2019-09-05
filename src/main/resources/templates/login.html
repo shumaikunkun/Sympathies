@@ -10,9 +10,9 @@
 
 
 <form th:action="'main'" method="post" th:object="${inputUsr}">
-    <input type="text" value="init" th:field="*{usr}" />
-    <input type="text" value="init" th:field="*{pass}" />
-    <input type="submit" />
+    <input type="text" placeholder="メールアドレス" value="init" th:field="*{mail}" /><br />
+    <input type="text" placeholder="パスワード" value="init" th:field="*{pass}" />
+    <input type="submit" value="ログイン" />
 </form>
 
 

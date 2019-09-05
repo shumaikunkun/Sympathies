@@ -6,13 +6,18 @@
 </head>
 <body>
 
-<p>設定画面</p>
+<p>出品画面</p>
 <!--<p th:text="${inputUsr.usr}+'さん、こんにちわ'" />-->
 <!--<p th:text="${inputUsr.pass}+'さん、こんにちわ'" />-->
 <p th:text="${usr}+'さん、こんにちわ'" />
+<p th:text="'販売しますか？'" />
+
+<form th:action="'sell?usr='+${usr}" method="post">
+    <input type="submit" value="出品"/>
+</form>
 
 <form th:action="'main?usr='+${usr}" method="post">
-    <input type="submit" value="戻る" />
+    <input type="submit" value="キャンセル"/>
 </form>
 
 </body>

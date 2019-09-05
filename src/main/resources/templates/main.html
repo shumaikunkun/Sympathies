@@ -7,12 +7,20 @@
 <body>
 
 <p>メインページ</p>
-<p th:text="${inputUsr.usr}+'さん、こんにちわ'" />
+<!--<p th:text="${inputMail.usr}+'さん、こんにちわ'" />-->
 <!--<p th:text="${name}+'さん、こんにちわ'" />-->
-<!--<p th:text="${usr}+'さん、こんにちわ'" />-->
+<p th:text="${usr}+'さん、こんにちわ'" />
 
-<form th:action="'setting?usr='+${inputUsr.usr}" method="post">
-    <input type="submit" />
+<form th:action="'setting?usr='+${usr}" method="post">
+    <input type="submit" value="設定" />
+</form>
+
+<form th:action="'buy_pre?usr='+${usr}+'&id=3'" method="post">
+    <input type="submit" value="購入" />
+</form>
+
+<form th:action="'sell_pre?usr='+${usr}" method="post">
+    <input type="submit" value="出品" />
 </form>
 
 </body>
