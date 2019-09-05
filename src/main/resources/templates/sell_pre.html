@@ -1,37 +1,100 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>出品ページ | Sympathies</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
     <link th:href="@{/css/index.css}" rel="stylesheet" />
 	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-    
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+    <!-- Bootstrap core CSS -->
+
+    <link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/sell_pre.css}" rel="stylesheet" />
+
 </head>
 <body>
 
+<header>
+    <nav class="navbar navar-light" style="background-color:cornflowerblue;">
+        <a class="navbar-brand">ヘッダー</a>
+        <a class="nav-item nav-link" th:text="${name}+'さん'+' '+${point}+'ポイント'"></a>
 
+    </nav>
+</header>
 
-<p>出品画面</p>
-<!--<p th:text="${inputUsr.usr}+'さん、こんにちわ'" />-->
-<!--<p th:text="${inputUsr.pass}+'さん、こんにちわ'" />-->
-<!--<p th:text="${usr}+'さん、こんにちわ'" />-->
-<p th:text="${name}+'さん、こんにちは'" />
-<p th:text="'残高'+${point}+'ポイント'" />
-<p th:text="'販売しますか？'" />
+<main>
+<container>
+    <div class="contnt"><h1 class="text-center">出品画面</h1></div>
+    <!--<p th:text="${inputUsr.usr}+'さん、こんにちわ'" />-->
+    <!--<p th:text="${inputUsr.pass}+'さん、こんにちわ'" />-->
+    <!--<p th:text="${usr}+'さん、こんにちわ'" />-->
 
-<form th:action="'sell?usr='+${usr}" method="post" enctype="multipart/form-data" th:object="${inputGoods}">
-    <input type="file" name="upload_file" /><br />
-    <input type="text" placeholder="商品名" value="init" th:field="*{name}" /><br />
-    <input type="text" placeholder="説明" value="init" th:field="*{description}" /><br />
-    <input type="number" placeholder="ポイント" value="init" th:field="*{point}" /><br />
-    <input type="submit" value="出品"/>
-</form>
+    <div class="content">
+        <h2 class="">商品の情報を入力してください</h2>
+    </div>
 
-<form th:action="'main?usr='+${usr}" method="post">
-    <input type="submit" value="キャンセル"/>
-</form>
+    <ul>
+        <li>
+            <form th:action="'sell?usr='+${usr}" method="post" enctype="multipart/form-data" th:object="${inputGoods}">
+                <ul>
+                    <li>
+                        <div class="content">
+                            <p>商品名</p>
+                            <input type="text" placeholder="商品名" th:field="*{name}"/>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="content">
+                            <p>商品の説明</p>
+                            <textarea rows="10" cols="60" placeholder="説明" th:field="*{description}"></textarea>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="content">
+                            <p>販売ポイント</p>
+                            <input type="number" placeholder="ポイント" value="init" th:field="*{point}"/>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="content">
+                            <p>画像のアップロード</p>
+                            <input type="file" name="upload_file"/>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="content">
+                           <h2><input type="submit" value="出品" class="btn btn-primary btn-lg"></h2> <!-- 最終手段 -->
+                        </div>
+                    </li>
+                </ul>
+            </form>
+        </li >
+        <li>
+            <form th:action="'main?usr='+${usr}" method="post" align="right">
+                <div class="content">
+                    <input type="submit" value="キャンセル" class="btn btn-danger btn-lg"/>
+                </div>
+            </form>
+        </li>
+    </ul>
+
+</container>
+</main>
+
+<footer class="text-muted">
+    <div class="container">
+        <p class="float-right">
+            <a href="#">Back to top</a>
+        </p>
+        <p>&copy; 2019 Sympathies All Right Reserved.</p>
+        <p>楽天株式会社 インターンシップ 二子玉川 夏の陣 2019</p>
+    </div>
+</footer>
 
 </body>
 </html>
