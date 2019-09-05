@@ -53,10 +53,9 @@ public class GreetingController {
             model.addAttribute("goods", goodsRepo.findAll());
             return "main";
         }
-
     }
 
-    @PostMapping("/setting")
+    @GetMapping("/setting")
     public String setting( Model model, @RequestParam("usr") String usr) {
 
         model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
