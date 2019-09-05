@@ -16,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.web.multipart.MultipartFile;
@@ -48,8 +49,6 @@ public class GreetingController {
         //usr=inputUsr.getUsr();
         //model.addAttribute("usr",usr);
 
-        log.info("-------"+ usr);
-
         model.addAttribute("usr", usr!=null ? usr : inputUsr.getMail());
 
         // fetch an individual user by ID
@@ -57,12 +56,35 @@ public class GreetingController {
         List<User> user = userRepo.findByMailAndPassward(inputUsr.getMail(), inputUsr.getPass());
         if ((user == null || user.size() == 0 ) && usr==null) {
 
-            log.info("FALSE");
+            log.info("ログイン＝＞ FALSE");
             return "login";
         } else {
-            log.info("TRUE");
-            log.info(goodsRepo.findAll().toString());
-            model.addAttribute("goods", goodsRepo.findAll());
+            log.info("ログイン＝＞ TRUE");
+
+            List<Goods> goods = goodsRepo.findAll();
+            log.info("グッズ一覧＝＞ "+goods.toString());
+
+            List<User> users =userRepo.findByMail(usr);
+            log.info("ユーザID＝＞ "+users.get(0).getId());
+
+            List<Transaction> transactions =transactionRepo.findAll();
+
+            //List<Goods> boughtList = new ArrayList<Goods>();
+
+
+
+            List<GoodsTf> goodsTf= new ArrayList<GoodsTf>;
+
+            for (GoodsTf itemTf : goodsTf) {
+
+            }
+
+//            List<GoodsTf> goodsTf;
+//            new GoodsTf(goodsTf)=
+            goodsTf.copyGoods(goods);
+
+            //model.addAttribute("goods", goodsRepo.findAll());
+
             return "main";
         }
 
