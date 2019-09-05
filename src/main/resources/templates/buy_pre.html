@@ -36,11 +36,11 @@
 
                 <div class="goods_all col-md-5">
 
-                    <h2 class="goods_name" th:text="'Hello, ' + ${name} + '!'" />
+                    <h2 class="goods_name" th:text="${name}" />
                     </h2>
 
                     <h4>商品説明</h4>
-                    <p class="goods_detail" th:text="'Hello, ' + ${description} + '!'" />
+                    <p class="goods_detail" th:text="${description}" />
 
 
                     <h3 th:text="${point} + 'p'" />
