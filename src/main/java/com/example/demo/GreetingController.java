@@ -117,6 +117,7 @@ public class GreetingController {
                 return "buy_pre";
             }
         }
+        log.info("===error0");
         return "error";
     }
 
@@ -129,27 +130,32 @@ public class GreetingController {
         // 送信元ユーザ、送信先ユーザ、商品の取得
         List<User> destUsers = userRepo.findByMail(usr);
         if (destUsers == null || destUsers.size() == 0) {
+            log.info("===error1");
             return "error";
         }
         User destUser = destUsers.get(0);
         Optional<Goods> itemOpt = goodsRepo.findById(Long.parseLong(id));
         if (!itemOpt.isPresent()) {
+            log.info("===error2");
             return "error";
         }
         Goods item = itemOpt.get();
         Optional<User> senderOpt = userRepo.findById(item.getUserId());
         if (!senderOpt.isPresent()) {
+            log.info("===error3");
             return "error";
         }
         User sender = senderOpt.get();
 
         // 出品者と購入者が同じときエラー
         if (item.getUserId() == destUsers.get(0).getId()) {
+            log.info("===error4");
             return "error";
         }
 
         // ポイント数が足りないときエラー
         if (destUser.getPoint() - item.getPoint() < 0) {
+            log.info("===error5");
             return "error";
         }
 
