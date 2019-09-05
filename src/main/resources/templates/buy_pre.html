@@ -28,20 +28,25 @@
     <main>
         <p th:text="${userName}+'さん、こんにちは'" />
         <p th:text="'残高'+${userPoint}+'ポイント'" />
+        <p th:text="'出品者は'+${sellUser}" />
 
         <div class="container">
 
             <div class="row">
-
-                <img class="image col-md-5" th:src="${path}" style="height: 350px;padding-left:50px;margin-top:20px;" />
+                <div th:if="${tf}">
+                    <img class="image col-md-7" th:src="${path}" style="height: 350px;" />
+                </div>
+                <div th:unless="${tf}">
+                    <img class="image col-md-7" th:src="${path}" style="height: 350px; filter: blur(9px);" />
+                </div>
 
                 <div class="goods_all col-md-6">
 
-                    <h2 class="goods_name" th:text="'Hello, ' + ${name} + '!'" />
+                    <h2 class="goods_name" th:text="${name}" />
                     </h2>
 
                     <h4>商品説明</h4>
-                    <p class="goods_detail" th:text="'Hello, ' + ${description} + '!'" />
+                    <p class="goods_detail" th:text="${description}" />
 
 
                     <h3 th:text="${point} + 'p'" />
