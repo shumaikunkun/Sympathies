@@ -59,7 +59,9 @@
         </div>
     </section>
 
-    <p th:text="${usr}+'さん'" />
+    <p th:text="${name}+'さん、こんにちは'" />
+    <p th:text="'残高'+${point}+'ポイント'" />
+
 
     <form th:action="'sell_pre?usr='+${usr}" method="post">
         <input type="submit" value="出品" />
