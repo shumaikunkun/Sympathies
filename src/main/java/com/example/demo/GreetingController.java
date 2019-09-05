@@ -67,14 +67,27 @@ public class GreetingController {
             // 全商品リストに対し、ログインユーザが購入しているかどうかという情報を持たせたgoodsTsのリストを作成
             List<GoodsTf> goodsTf = new ArrayList<GoodsTf>();
             log.info(usr!=null ? usr : inputUsr.getMail());
+
             List<User> users = userRepo.findByMail(usr!=null ? usr : inputUsr.getMail());
             if (users == null || users.size() == 0) {
                 return "error";
             }
-            Long userId = users.get(0).getId();
+            String userName = users.get(0).getName(); //ユーザ名
+            int userPoint = users.get(0).getPoint(); //保有ポイント
+            model.addAttribute("name", userName);
+            model.addAttribute("point", userPoint);
+
+
+            Long userId = users.get(0).getId(); //ユーザID
             for (Goods item : goods) {
                 GoodsTf itemTf = new GoodsTf();
                 itemTf.copyGoods(item);
+                if (item.getUserId() == userId) {
+                    // ログインユーザの出品物はTRUE
+                    itemTf.setBought(true);
+                    goodsTf.add(itemTf);
+                    continue;
+                }
                 List<Transaction> tran = transactionRepo.findByDestinationUserIdAndGoodsId(userId, item.getId());
                 if (tran == null || tran.size() == 0) {
                     itemTf.setBought(false);
@@ -95,6 +108,12 @@ public class GreetingController {
 
         model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
 
+        List<User> users = userRepo.findByMail(usr);
+        String userName = users.get(0).getName(); //ユーザ名
+        int userPoint = users.get(0).getPoint(); //保有ポイント
+        model.addAttribute("name", userName);
+        model.addAttribute("point", userPoint);
+
         return "setting";
     }
 
@@ -104,6 +123,12 @@ public class GreetingController {
 
         model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
         model.addAttribute("id", id);
+
+        List<User> users = userRepo.findByMail(usr);
+        String userName = users.get(0).getName(); //ユーザ名
+        int userPoint = users.get(0).getPoint(); //保有ポイント
+        model.addAttribute("userName", userName);
+        model.addAttribute("userPoint", userPoint);
 
         for (Goods goods : goodsRepo.findAll()) {
 
@@ -168,13 +193,26 @@ public class GreetingController {
         userRepo.save(sender);
         userRepo.save(destUser);
 
+        List<User> users = userRepo.findByMail(usr);
+        String userName = users.get(0).getName(); //ユーザ名
+        int userPoint = users.get(0).getPoint(); //保有ポイント
+        model.addAttribute("name", userName);
+        model.addAttribute("point", userPoint);
+
         return "buy";
     }
+
 
     @PostMapping("/sell_pre")
     public String sell_pre( Model model, @RequestParam("usr") String usr, @ModelAttribute("inputGoods") InputGoods inputGoods) {
 
         model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
+
+        List<User> users = userRepo.findByMail(usr);
+        String userName = users.get(0).getName(); //ユーザ名
+        int userPoint = users.get(0).getPoint(); //保有ポイント
+        model.addAttribute("name", userName);
+        model.addAttribute("point", userPoint);
 
         return "sell_pre";
     }
@@ -186,6 +224,14 @@ public class GreetingController {
     public String sell( Model model, @RequestParam("usr") String usr, @RequestParam(name="upload_file",required=false) MultipartFile upfile, @ModelAttribute("inputGoods") InputGoods inputGoods) {
 
         model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
+
+        List<User> users = userRepo.findByMail(usr);
+        String userName = users.get(0).getName(); //ユーザ名
+        int userPoint = users.get(0).getPoint(); //保有ポイント
+        model.addAttribute("name", userName);
+        model.addAttribute("point", userPoint);
+
+
 
         //画像ファイル追加の処理
         if (!upfile.isEmpty()) {
@@ -204,7 +250,8 @@ public class GreetingController {
         log.info(inputGoods.getName());
         log.info(inputGoods.getDescription());
 
-        List<User> users =userRepo.findByMail(usr);
+
+
 
 
         //goodsデータベースに追加
@@ -221,6 +268,11 @@ public class GreetingController {
         if (users == null || users.size() == 0) {
             return "error";
         }
+
+        String userName = users.get(0).getName(); //ユーザ名
+        int userPoint = users.get(0).getPoint(); //保有ポイント
+        model.addAttribute("name", userName);
+        model.addAttribute("point", userPoint);
 
         // ログインユーザが購入した商品一覧の取得
         List<Goods> boughtList = new ArrayList<Goods>();

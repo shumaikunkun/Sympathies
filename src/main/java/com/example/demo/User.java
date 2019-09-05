@@ -12,6 +12,9 @@ public class User {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String mail;
+
+
+
     private String name;
     private String passward;
     private Integer point;
@@ -20,6 +23,7 @@ public class User {
 
     public Long getId() { return id; }
     public Integer getPoint() { return point; }
+    public String getName() { return name; }
     public void setPoint(Integer point) { this.point = point; }
 
     public User(String mail, String name, String passward, Integer point) {
