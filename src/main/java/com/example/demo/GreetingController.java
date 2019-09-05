@@ -135,6 +135,11 @@ public class GreetingController {
         for (Goods goods : goodsRepo.findAll()) {
 
             if (goods.getId() == Long.parseLong(id)) {
+
+                Optional<User>  sellUsers = userRepo.findById(goods.getUserId());
+                //log.info("出品者は"+sellUsers.get().getName());
+                model.addAttribute("sellUser",sellUsers.get().getName());  //出品者名
+
                 model.addAttribute("id", goods.getId());
                 model.addAttribute("name", goods.getName());
                 model.addAttribute("description", goods.getDescription());

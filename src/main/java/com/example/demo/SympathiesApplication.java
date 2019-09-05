@@ -30,13 +30,13 @@ public class SympathiesApplication {
 			// save a couple of users
 			userRepo.save(new User("test@example.com", "楽天太郎", "passwd", 100));
 			userRepo.save(new User("test2@example.com", "楽天花子", "mypasswd", 50));
+			userRepo.save(new User("shira@gmail.com", "シラトリ ユウジ", "shira", 100));
 			userRepo.save(new User("shuma@gmail.com", "清水秀馬", "shuma", 100));
-			userRepo.save(new User("shimizu@gmail.com", "清水秀馬", "shimizu", 100));
 			userRepo.save(new User("inoue@gmail.com", "井上将斗", "inoue", 100));
 			userRepo.save(new User("hirata@gmail.com", "平田雄也", "hirata", 100));
 			userRepo.save(new User("yanagido@gmail.com", "柳戸新一", "yamnagido", 100));
 			userRepo.save(new User("rakuten@gmail.com", "ラック・テン", "rakuten", 100));
-			userRepo.save(new User("shira@gmail.com", "シラトリ ユウジ", "shira", 100));
+
 		};
 	}
 
