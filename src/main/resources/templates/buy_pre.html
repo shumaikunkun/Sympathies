@@ -1,31 +1,148 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <link th:href="@{/css/buy_pre.css}" rel="stylesheet" />
+
 </head>
+
 <body>
 
-<p>購入画面</p>
-<p th:text="${usr}+'さん、こんにちわ'" />
-<p th:text="${id}+'番の商品を購入しますか？'" />
+    <header>
+        <nav class="navbar navbar-light" style="background-color:cornflowerblue;">
+            <a class="navbar-brand" href="#">Navbar</a>
+
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" th:text="${usr}+'さん、こんにちわ'" href="#"></a>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
 
 
 
-<p th:text="'Hello, ' + ${id} + '!'" />
-<p th:text="'Hello, ' + ${name} + '!'" />
-<p th:text="'Hello, ' + ${description} + '!'" />
-<p th:text="'Hello, ' + ${point} + '!'" />
-<img th:src="${path}" />
+        <div class="container">
+
+            <div class="row">
+
+                <img class="image col-md-7" th:src="${path}" style="height: 350px;" />
+
+                <div class="goods_all col-md-5">
+
+                    <h2 class="goods_name" th:text="'Hello, ' + ${name} + '!'" />
+                    </h2>
+
+                    <h4>商品説明</h4>
+                    <p class="goods_detail" th:text="'Hello, ' + ${description} + '!'" />
+
+
+                    <h3 th:text="${point} + 'p'" />
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <form class="buy" th:action="'buy?usr='+${usr}+'&id='+${id}" method="post">
+                    <input type="submit" value="購入" />
+                </form>
+
+                <br>
+
+                <form class="cansel" th:action="'main?usr='+${usr}" method="post">
+                    <input type="submit" value="キャンセル" />
+                </form>
+            </div>
 
 
 
-<form th:action="'buy?usr='+${usr}+'&id='+${id}" method="post">
-    <input type="submit" value="購入" />
-</form>
-<form th:action="'main?usr='+${usr}" method="post">
-    <input type="submit" value="キャンセル" />
-</form>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                            xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
+                            role="img" aria-label="Placeholder: Thumbnail">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#DDDDDD" />
+                            <text x="50%" y="50%" fill="black"
+                                dy=".3em">No image</text>
+                        </svg>
+                        <div class="card-body">
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                
+                                <small class="text-muted">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                            xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
+                            role="img" aria-label="Placeholder: Thumbnail">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#DDDDDD" /><text x="50%" y="50%" fill="black"
+                                dy=".3em">No image</text>
+                        </svg>
+                        <div class="card-body">
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                
+                                <small class="text-muted">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                            xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
+                            role="img" aria-label="Placeholder: Thumbnail">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#DDDDDD" /><text x="50%" y="50%" fill="black"
+                                dy=".3em">No image</text>
+                        </svg>
+                        <div class="card-body">
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                
+                                <small class="text-muted">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </main>
+
 
 </body>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../static/js/bootstrap.js" th:href="@{/js/bootstrap.js}"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
+</html>
+
+
 </html>
