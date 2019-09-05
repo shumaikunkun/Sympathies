@@ -100,7 +100,7 @@ public class GreetingController {
         model.addAttribute("id", id);
 
         //ポイントの更新の処理
-        //トランザクション更新の処理
+        //トランザクションデータベースの更新の処理
 
         return "buy";
     }
@@ -119,6 +119,9 @@ public class GreetingController {
     @PostMapping("/sell")
     public String sell( Model model, @RequestParam("usr") String usr, @RequestParam(name="upload_file",required=false) MultipartFile upfile) {
 
+        model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
+
+        //画像ファイル追加の処理
         if (!upfile.isEmpty()) {
             try {
 
@@ -131,13 +134,8 @@ public class GreetingController {
             }
         }
 
-
-        model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
-
-        //画像ファイル追加の処理
-        //model.addAttribute("path", "src/main/resources/static/images/"+"1.jpg");
-
         //goodsデータベースに追加
+        goodsRepo.save(new Goods(1L, "aaa", "aaa", 100, "images/"+upfile.getOriginalFilename()));
 
         return "sell";
     }
