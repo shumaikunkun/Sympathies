@@ -10,8 +10,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.web.multipart.MultipartFile;
+import javax.validation.Valid;
+
 
 @org.springframework.stereotype.Controller
 public class GreetingController {
@@ -89,14 +98,6 @@ public class GreetingController {
         return "error";
     }
 
-    @PostMapping("/sell_pre")
-    public String sell_pre( Model model, @RequestParam("usr") String usr) {
-
-        model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
-
-        return "sell_pre";
-    }
-
     @PostMapping("/buy")
     public String buy( Model model, @RequestParam("usr") String usr,  @RequestParam("id") String id) {
 
@@ -142,12 +143,45 @@ public class GreetingController {
         return "buy";
     }
 
+    @PostMapping("/sell_pre")
+    public String sell_pre( Model model, @RequestParam("usr") String usr, @ModelAttribute("inputGoods") InputGoods inputGoods) {
+
+        model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
+
+        return "sell_pre";
+    }
+
+
+
+
     @PostMapping("/sell")
-    public String sell( Model model, @RequestParam("usr") String usr) {
+    public String sell( Model model, @RequestParam("usr") String usr, @RequestParam(name="upload_file",required=false) MultipartFile upfile, @ModelAttribute("inputGoods") InputGoods inputGoods) {
 
         model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
 
         //画像ファイル追加の処理
+        if (!upfile.isEmpty()) {
+            try {
+
+                byte[] bytes = upfile.getBytes();
+                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static/images/"+upfile.getOriginalFilename())));
+                stream.write(bytes);
+                stream.close();
+            } catch (Exception e) {
+                //return error page
+            }
+        }
+
+        //画像の説明の処理
+        log.info(inputGoods.getName());
+        log.info(inputGoods.getDescription());
+
+        List<User> users =userRepo.findByMail(usr);
+
+
+        //goodsデータベースに追加
+        goodsRepo.save(new Goods( users.get(0).getId(), inputGoods.getName(), inputGoods.getDescription(), inputGoods.getPoint(), "images/"+upfile.getOriginalFilename()));
+        //usrIDをメアドからとってくる
 
         return "sell";
     }
