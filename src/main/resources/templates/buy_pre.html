@@ -27,13 +27,16 @@
     <main>
         <p th:text="${userName}+'さん、こんにちは'" />
         <p th:text="'残高'+${userPoint}+'ポイント'" />
-        <p th:text="'購入か非購入は'+${tf}" />
 
         <div class="container">
 
             <div class="row">
-
-                <img class="image col-md-7" th:src="${path}" style="height: 350px;" />
+                <div th:if="${tf}">
+                    <img class="image col-md-7" th:src="${path}" style="height: 350px;" />
+                </div>
+                <div th:unless="${tf}">
+                    <img class="image col-md-7" th:src="${path}" style="height: 350px;" />
+                </div>
 
                 <div class="goods_all col-md-5">
 
