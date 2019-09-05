@@ -12,7 +12,8 @@
 <p th:text="${usr}+'さん、こんにちわ'" />
 <p th:text="'販売しますか？'" />
 
-<form th:action="'sell?usr='+${usr}" method="post">
+<form th:action="'sell?usr='+${usr}" method="post" enctype="multipart/form-data">
+    <input type="file" name="upload_file" /><br />
     <input type="submit" value="出品"/>
 </form>
 

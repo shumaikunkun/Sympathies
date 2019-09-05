@@ -110,6 +110,7 @@ public class GreetingController {
         model.addAttribute("usr", usr);  //クエリからとってきてビューに受け渡す
 
         //画像ファイル追加の処理
+        //goodsデータベースに追加
 
         return "sell";
     }
