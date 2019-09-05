@@ -1,0 +1,50 @@
+ @charset "utf-8";
+
+ /* 基本設定 */
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+    }
+}
+
+body {
+    background-color: #f0f0f0;
+}
+
+h1{
+    padding-top:30px;
+}
+
+ul{
+  width:700px;
+  margin-right: auto;
+  margin-left : auto;
+  list-style: none;
+}
+
+.main li {
+  display: list-item;  /* 縦に並べる */
+  list-style-type: none;
+  text-transform: uppercase;
+  padding: 0.5em;
+  background: #ccc;
+}
+
+footer{
+	background: #FFFFFF;
+	width: 100%;
+	position: absolute;
+}
+
+.content{
+    padding: 30px;
+}
