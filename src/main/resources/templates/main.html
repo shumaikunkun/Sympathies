@@ -82,7 +82,10 @@
                                     <p th:text="${item.name}" />
                                     <p>説　明：</p>
                                     <p th:text="${item.description}" class="card-text" />
-                                    <p>必要ポイント：</p><p th:text="${item.point}" class="card-text" />
+                                    <p>必要ポイント：</p>
+                                    <p th:text="${item.point}" class="card-text" />
+                                    <p>出品者：</p>
+                                    <p th:text="${item.userName}" class="card-text" />
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <form th:action="'buy_pre?usr='+${usr}+'&id='+${item.id}+'&tf='+${item.bought}" method="post">
@@ -102,7 +105,10 @@
                                     <p th:text="${item.name}" />
                                     <p>説　明：</p>
                                     <p th:text="${item.description}" class="card-text" />
-                                    <p>必要ポイント：</p><p th:text="${item.point}" class="card-text" />
+                                    <p>必要ポイント：</p>
+                                    <p th:text="${item.point}" class="card-text" />
+                                    <p>出品者：</p>
+                                    <p th:text="${item.userName}" class="card-text" />
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <form th:action="'buy_pre?usr='+${usr}+'&id='+${item.id}+'&tf='+${item.bought}" method="post">

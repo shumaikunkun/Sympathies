@@ -77,11 +77,19 @@ public class GreetingController {
             model.addAttribute("name", userName);
             model.addAttribute("point", userPoint);
 
-
             Long userId = users.get(0).getId(); //ユーザID
             for (Goods item : goods) {
                 GoodsTf itemTf = new GoodsTf();
-                itemTf.copyGoods(item);
+                itemTf.copyGoods(item);  //中身をコピー
+
+                //ユーザーIDからユーザー名を取り出して、GoodsTfの属性に追加（グッズそれぞれに出品者名を表示したい）
+                log.info("userIDは"+item.getUserId());
+                Optional<User> sellUser = userRepo.findById(item.getUserId());
+                String sellUserName = sellUser.get().getName();
+                log.info("usernameは"+sellUserName);
+                itemTf.setUserName(sellUserName);
+                goodsTf.add(itemTf);
+
                 if (item.getUserId() == userId) {
                     // ログインユーザの出品物はTRUE
                     itemTf.setBought(true);
