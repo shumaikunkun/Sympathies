@@ -7,7 +7,9 @@
 <body>
 
 <p>購入完了画面</p>
-<p th:text="${usr}+'さん、こんにちわ'" />
+
+<p th:text="${name}+'さん、こんにちは'" />
+<p th:text="'残高'+${point}+'ポイント'" />
 <p th:text="${id}+'番の商品を購入しました。'" />
 
 <form th:action="'main?usr='+${usr}" method="post">
