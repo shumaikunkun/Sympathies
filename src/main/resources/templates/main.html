@@ -15,5 +15,15 @@
     <input type="submit" />
 </form>
 
+<!--<tr th:if="${not #lists.isEmpty(goods)}">-->
+    <ul class="item-view">
+    <tr th:each="item : ${goods}">
+        <li><p th:text="${item.name}"></li>
+        <li><img th:src="${item.path}"/></li>
+<!--    <img th:src="${item.path}"/>-->
+    </tr>
+    </ul>
+<!--</tr>-->
+
 </body>
 </html>

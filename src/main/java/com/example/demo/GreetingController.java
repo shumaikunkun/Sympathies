@@ -30,7 +30,7 @@ public class GreetingController {
     }
 
     @PostMapping(path="/main")
-    public String main(@ModelAttribute("inputUsr") InputUsr inputUsr) {
+    public String main(@ModelAttribute("inputUsr") InputUsr inputUsr, Model model) {
 
         //model.addAttribute("name",inputUsr.getUsr());
         //usr=inputUsr.getUsr();
@@ -43,6 +43,8 @@ public class GreetingController {
             return "login";
         } else {
             log.info("TRUE");
+            log.info(goodsRepo.findAll().toString());
+            model.addAttribute("goods", goodsRepo.findAll());
             return "main";
         }
 
