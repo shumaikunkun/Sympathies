@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Getting Started: Serving Web Content</title>
+	<title>ログインページ | Sympathies</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
@@ -15,17 +15,13 @@
 </head>
 
 <body>
-	<header>
-		<nav class="navbar navbar-light" style="background-color:cornflowerblue;">
-			<a class="navbar-brand" href="#">Navbar</a>
-			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-				<div class="navbar-nav">
-					<a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a> <a
-						class="nav-item nav-link" href="#">Features</a>
-				</div>
-			</div>
-		</nav>
-	</header>
+<header>
+
+	<nav class="navbar navbar-dark bg-dark">
+		<a class="navbar-brand" href="#"><strong>Sympathies</strong></a>
+	</nav>
+
+</header>
 	<div class="container">
 		<form class="form-signin" th:action="'main'" method="post" th:object="${inputUsr}">
 			<h2>Login</h2>

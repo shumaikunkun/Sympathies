@@ -66,7 +66,7 @@ public class GreetingController {
 
             // 全商品リストに対し、ログインユーザが購入しているかどうかという情報を持たせたgoodsTsのリストを作成
             List<GoodsTf> goodsTf = new ArrayList<GoodsTf>();
-            log.info(usr!=null ? usr : inputUsr.getMail());
+            log.info("メアド＝＞　"+usr!=null ? usr : inputUsr.getMail());
 
             List<User> users = userRepo.findByMail(usr!=null ? usr : inputUsr.getMail());
             if (users == null || users.size() == 0) {
@@ -276,7 +276,8 @@ public class GreetingController {
         return "sell";
     }
 
-    @PostMapping("/history")
+//    @PostMapping("/history")
+    @GetMapping("/history")
     public String history(Model model, @RequestParam("usr") String usr) {
         // ログインユーザの取得
         List<User> users = userRepo.findByMail(usr);

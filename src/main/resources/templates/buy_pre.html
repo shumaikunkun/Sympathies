@@ -13,31 +13,50 @@
 
 <body>
 
-    <header>
-        <nav class="navbar navbar-light" style="background-color:cornflowerblue;">
-            <a class="navbar-brand" href="#">Navbar</a>
+<header>
 
-            <div class="navbar-nav">
-                <a class="nav-item nav-link" th:text="${usr}+'さん、こんにちわ'" href="#"></a>
-                
-            </div>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"><strong>Sympathies</strong></a>
+        <div class="userdate">
+            <p class="user" th:text="${userName}+'さん' + ' ' + ${userPoint} + 'ポイント' " />
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01"
+                aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        </nav>
-    </header>
+        <div class="collapse navbar-collapse" id="navbarsExample01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a th:href="@{history(usr=${usr})}" class="text-white nav-link">購入一覧</a>
+                </li>
+                <li class="nav-item active">
+                    <a th:href="@{setting(usr=${usr})}" class="text-white nav-link">設定</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">ログアウト</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <!-- <li><a th:href="@{setting(usr=${usr})}" class="text-white">設定</a></li> -->
+
+
+</header>
 
     <main>
-        <p th:text="${userName}+'さん、こんにちは'" />
-        <p th:text="'残高'+${userPoint}+'ポイント'" />
-        <p th:text="'出品者は'+${sellUser}" />
-
         <div class="container">
 
             <div class="row">
-                <div th:if="${tf}">
-                    <img class="image col-md-7" th:src="${path}" style="height: 350px;" />
-                </div>
-                <div th:unless="${tf}">
-                    <img class="image col-md-7" th:src="${path}" style="height: 350px; filter: blur(9px);" />
+                <div class="goods_iamge col-md-5">
+                    <div th:if="${tf}">
+                        <img class="image" th:src="${path}" style="height: 350px;" />
+                    </div>
+                    <div th:unless="${tf}">
+                        <img class="image" th:src="${path}" style="height: 350px; filter: blur(9px);" />
+                    </div>
                 </div>
 
                 <div class="goods_all col-md-6">
@@ -47,10 +66,10 @@
 
                     <h4>商品説明</h4>
                     <p class="goods_detail" th:text="${description}" />
-
-
+                    
+                    <p class="senduser" th:text="'出品者 .....'+${sellUser}" />
                     <h3 th:text="${point} + 'p'" />
-
+                    
                 </div>
 
             </div>
@@ -143,6 +162,15 @@
         </div>
     </main>
 
+    <footer class="text-muted">
+        <div class="footer_design">
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+            <p>&copy; 2019 Sympathies All Right Reserved.</p>
+            <p>楽天株式会社 インターンシップ 二子玉川 夏の陣 2019</p>
+        </div>
+    </footer>
 
 </body>
 
