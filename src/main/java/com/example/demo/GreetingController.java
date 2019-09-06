@@ -276,7 +276,8 @@ public class GreetingController {
         return "sell";
     }
 
-    @PostMapping("/history")
+//    @PostMapping("/history")
+    @GetMapping("/history")
     public String history(Model model, @RequestParam("usr") String usr) {
         // ログインユーザの取得
         List<User> users = userRepo.findByMail(usr);
