@@ -23,6 +23,9 @@
 
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="#"><strong>Sympathies</strong></a>
+        <div class="userdate">
+            <p class="user" th:text="${name}+'さん' + ' ' + ${point} + 'ポイント' " />
+        </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01"
                 aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -45,9 +48,7 @@
     </nav>
 
     <!-- <li><a th:href="@{setting(usr=${usr})}" class="text-white">設定</a></li> -->
-    <div class="userdate">
-        <p class="user" th:text="${name}+'さん' + ' ' + ${point} + 'ポイント' " />
-    </div>
+
 
 </header>
 
