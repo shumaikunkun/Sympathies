@@ -55,6 +55,32 @@
 
 <h1>購入した商品の一覧です</h1>
 
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <tr th:each="item : ${goods}">
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="bd-placeholder-img card-img-top" width="100%" height="225" th:src="${item.path}" />
+                        <div class="card-body">
+                            <p>商品名：</p>
+                            <p th:text="${item.name}"/>
+                            <p>説　明：</p>
+                            <p th:text="${item.description}" class="card-text" />
+                            <p>必要ポイント：</p>
+                            <p th:text="${item.point}" class="card-text"/>
+                        </div>
+                    </div>
+                </div>
+            </tr>
+        </div>
+    </div>
+</div>
+
+<form th:action="'main?usr='+${usr}" method="post">
+    <input type="submit" value="トップに戻る" />
+</form>
+
 <footer class="text-muted">
     <div class="container">
         <p class="float-right">
