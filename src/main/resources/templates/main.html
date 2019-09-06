@@ -34,16 +34,13 @@
             <div class="collapse navbar-collapse" id="navbarsExample01">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">取引履歴</a>
+                        <a th:href="@{history(usr=${usr})}" class="text-white nav-link">購入一覧</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">購入一覧</a>
+                        <a th:href="@{setting(usr=${usr})}" class="text-white nav-link">設定</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">設定</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">ログアウト</a>
+                        <a class="nav-link" href="/">ログアウト</a>
                     </li>
                 </ul>
 
@@ -85,11 +82,11 @@
                                     <!--                                <img   preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></img>-->
                                     <div class="card-body">
                                         <p>商品名：</p>
-                                        <p th:text="${item.name}" />
+                                        <p th:text="${item.name}"/>
                                         <p>説　明：</p>
                                         <p th:text="${item.description}" class="card-text" />
                                         <p>必要ポイント：</p>
-                                        <p th:text="${item.point}" class="card-text" />
+                                        <p th:text="${item.point}" class="card-text"/>
                                         <p>出品者：</p>
                                         <p th:text="${item.userName}" class="card-text" />
                                         <div class="d-flex justify-content-between align-items-center">
@@ -112,11 +109,11 @@
                                     <!--                                <img   preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></img>-->
                                     <div class="card-body">
                                         <p>商品名：</p>
-                                        <p th:text="${item.name}" />
+                                        <p th:text="${item.name}"/>
                                         <p>説　明：</p>
                                         <p th:text="${item.description}" class="card-text" />
                                         <p>必要ポイント：</p>
-                                        <p th:text="${item.point}" class="card-text" />
+                                        <p th:text="${item.point}" class="card-text"/>
                                         <p>出品者：</p>
                                         <p th:text="${item.userName}" class="card-text" />
                                         <div class="d-flex justify-content-between align-items-center">
