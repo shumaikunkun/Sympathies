@@ -40,16 +40,12 @@
 
     <!-- <li><a th:href="@{setting(usr=${usr})}" class="text-white">設定</a></li> -->
     <div class="userdate">
-        <p class="user" th:text="${name}+'さん' + ' ' + ${point} + 'ポイント' " />
+        <p class="user" th:text="${userName}+'さん' + ' ' + ${userPoint} + 'ポイント' " />
     </div>
 
 </header>
 
     <main>
-        <p th:text="${userName}+'さん、こんにちは'" />
-        <p th:text="'残高'+${userPoint}+'ポイント'" />
-
-
         <div class="container">
 
             <div class="row">
