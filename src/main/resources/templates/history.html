@@ -17,7 +17,7 @@
     <link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <link th:href="@{/css/history.css}" rel="stylesheet" />
 </head>
 
 <body>
@@ -46,16 +46,16 @@
         </div>
     </nav>
 
-    <!-- <li><a th:href="@{setting(usr=${usr})}" class="text-white">設定</a></li> -->
     <div class="userdate">
         <p class="user" th:text="${name}+'さん' + ' ' + ${point} + 'ポイント' " />
     </div>
 
 </header>
 
-<h1>購入した商品の一覧です</h1>
-
 <div class="album py-5 bg-light">
+
+    <h1>購入した商品の一覧です</h1>
+
     <div class="container">
         <div class="row">
             <tr th:each="item : ${goods}">
@@ -75,11 +75,12 @@
             </tr>
         </div>
     </div>
+    <div class="container">
+        <form th:action="'main?usr='+${usr}" method="post">
+            <input type="submit" value="トップに戻る" />
+        </form>
+    </div>
 </div>
-
-<form th:action="'main?usr='+${usr}" method="post">
-    <input type="submit" value="トップに戻る" />
-</form>
 
 <footer class="text-muted">
     <div class="container">
