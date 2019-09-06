@@ -1,6 +1,14 @@
+@charset "utf-8";
+
 .userdate{
-background-color:#343a40;
-color:white;
-text-align: right;
-padding-right:150px;
+    background-color:#343a40;
+    color:white;
+    text-align: right;
+    padding-right:150px;
+}
+
+footer{
+	background: #FFFFFF;
+	width: 100%;
+	position: absolute;
 }
