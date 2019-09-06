@@ -1,20 +1,75 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/buy.css}" rel="stylesheet" />
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
 </head>
+
 <body>
 
-<p>購入完了画面</p>
+    <header>
 
-<p th:text="${name}+'さん、こんにちは'" />
-<p th:text="'残高'+${point}+'ポイント'" />
-<p th:text="${id}+'番の商品を購入しました。'" />
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="#"><strong>Sympathies</strong></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01"
+                aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-<form th:action="'main?usr='+${usr}" method="post">
-    <input type="submit" value="トップに戻る" />
-</form>
+            <div class="collapse navbar-collapse" id="navbarsExample01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">取引履歴</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">購入一覧</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">設定</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">ログアウト</a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+
+        <!-- <li><a th:href="@{setting(usr=${usr})}" class="text-white">設定</a></li> -->
+        <div class="userdate">
+            <p class="user" th:text="${name}+'さん' + ' ' + ${point} + 'ポイント' " />
+        </div>
+
+    </header>
+
+    <main>
+
+        <div class="message">
+            <br>
+            <br>
+            <div class="title">
+                <h2>購入完了</h2>
+            </div>
+
+            <p th:text="${name}+'さん、ご利用ありがとうございました' "></p>
+            <p th:text="'残り'+${point}+'ポイント'" />
+            <form class="top" th:action="'main?usr='+${usr}" method="post">
+                <input type="submit" value="TOPへ" />
+            </form>
+        
+        </div>
+
+
+    </main>
+
 
 </body>
+
 </html>
