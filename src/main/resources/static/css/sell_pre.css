@@ -48,3 +48,10 @@ footer{
 .content{
     padding: 30px;
 }
+
+.userdate{
+    background-color:#343a40;
+    color:white;
+    text-align: right;
+    padding-right:150px;
+}
